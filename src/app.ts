@@ -8,8 +8,6 @@ const setEnv = () : void => {
   if (!process.env.PORT) {
     process.exit(1);
   }
-
-  console.log(process.env.PORT);
 }
 
 setEnv();
