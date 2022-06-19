@@ -5,6 +5,7 @@
   "scripts": {
     "start:prod": "webpack && node ./dist/bundle.js",
     "start:dev": "nodemon ./src/app.ts",
+    "start:multi": "ts-node ./src/multiApp.ts",
     "start:ts": "ts-node ./src/app.ts",
     "test": "ts-mocha test/*.ts"
   },
