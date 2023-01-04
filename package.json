@@ -4,9 +4,9 @@
   "description": "Simple crud api",
   "scripts": {
     "start:prod": "webpack && node ./dist/bundle.js",
-    "start:dev": "nodemon ./src/app.ts",
-    "start:multi": "ts-node ./src/multiApp.ts",
-    "start:ts": "ts-node ./src/app.ts",
+    "start:dev": "nodemon ./src/index.ts",
+    "start:multi": "ts-node ./src/multi.ts",
+    "start:ts": "ts-node ./src/index.ts",
     "test": "ts-mocha test/*.ts"
   },
   "repository": {
@@ -25,24 +25,24 @@
   },
   "homepage": "https://github.com/sokolw/crud-api#readme",
   "devDependencies": {
-    "@types/chai": "^4.3.1",
-    "@types/mocha": "^9.1.1",
-    "@types/node": "^18.0.0",
-    "@types/supertest": "^2.0.12",
-    "@types/uuid": "^8.3.4",
-    "chai": "^4.3.6",
-    "mocha": "^10.0.0",
-    "nodemon": "^2.0.16",
-    "supertest": "^6.2.3",
-    "ts-loader": "^9.3.0",
-    "ts-mocha": "^10.0.0",
-    "ts-node": "^10.8.1",
-    "typescript": "^4.7.3",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0"
+    "@types/chai": "4.3.1",
+    "@types/mocha": "9.1.1",
+    "@types/node": "18.0.0",
+    "@types/supertest": "2.0.12",
+    "@types/uuid": "8.3.4",
+    "chai": "4.3.6",
+    "mocha": "10.0.0",
+    "nodemon": "2.0.16",
+    "supertest": "6.2.3",
+    "ts-loader": "9.3.0",
+    "ts-mocha": "10.0.0",
+    "ts-node": "10.8.1",
+    "typescript": "4.7.3",
+    "webpack": "5.73.0",
+    "webpack-cli": "4.10.0"
   },
   "dependencies": {
-    "dotenv": "^16.0.1",
-    "uuid": "^8.3.2"
+    "dotenv": "16.0.1",
+    "uuid": "8.3.2"
   }
 }
