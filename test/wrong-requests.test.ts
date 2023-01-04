@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import request from 'supertest';
-import { StatusCode } from '../src/StatusCode';
+import { StatusCode } from '../src/app/status-code';
 import { config } from "dotenv";
 
 // set env
@@ -35,7 +35,7 @@ describe('Start: Test wrong requests crud!', () => {
     it('responds with status code 400', (done) => {
       request(host)
         .get(`/api/users/${invalidUuid}`)
-        .expect(StatusCode.BadRequest, done);
+        .expect(StatusCode.BAD_REQUEST, done);
     });
   });
   
@@ -43,7 +43,7 @@ describe('Start: Test wrong requests crud!', () => {
     it('responds with status code 404', (done) => {
       request(host)
       .get(`/api/users/${unExistUuid}`)
-      .expect(StatusCode.NotFound, done);
+      .expect(StatusCode.NOT_FOUND, done);
     });
   });
   
@@ -52,7 +52,7 @@ describe('Start: Test wrong requests crud!', () => {
       request(host)
         .post('/api/users')
         .send(JSON.stringify(invalidUser))
-        .expect(StatusCode.BadRequest, done)
+        .expect(StatusCode.BAD_REQUEST, done)
     });
   });
 
@@ -66,7 +66,7 @@ describe('Start: Test wrong requests crud!', () => {
       request(host)
         .post('/api/users')
         .send(JSON.stringify(testUser))
-        .expect(StatusCode.Created)
+        .expect(StatusCode.CREATED)
         .then(response => {
           const responseTestUser = JSON.parse(response.text);
           testUser.id = responseTestUser.id;
@@ -84,7 +84,7 @@ describe('Start: Test wrong requests crud!', () => {
       request(host)
         .put(`/api/users/${invalidUuid}`)
         .send(JSON.stringify(testUser))
-        .expect(StatusCode.BadRequest, done);
+        .expect(StatusCode.BAD_REQUEST, done);
     });
   });
 
@@ -93,7 +93,7 @@ describe('Start: Test wrong requests crud!', () => {
       request(host)
         .put(`/api/users/${testUser.id}`)
         .send(JSON.stringify(invalidUser))
-        .expect(StatusCode.BadRequest, done);
+        .expect(StatusCode.BAD_REQUEST, done);
     });
   });
 
@@ -101,7 +101,7 @@ describe('Start: Test wrong requests crud!', () => {
     it('responds with status code 204', (done) => {
       request(host)
         .delete(`/api/users/${testUser.id}`)
-        .expect(StatusCode.NoContent, done);
+        .expect(StatusCode.NO_CONTENT, done);
     });
   });
 
@@ -110,7 +110,7 @@ describe('Start: Test wrong requests crud!', () => {
       request(host)
         .put(`/api/users/${testUser.id}`)
         .send(JSON.stringify(testUser))
-        .expect(StatusCode.NotFound, done);
+        .expect(StatusCode.NOT_FOUND, done);
     });
   });
   
@@ -118,7 +118,7 @@ describe('Start: Test wrong requests crud!', () => {
     it('responds with status code 400', (done) => {
       request(host)
         .delete(`/api/users/${invalidUuid}`)
-        .expect(StatusCode.BadRequest, done);
+        .expect(StatusCode.BAD_REQUEST, done);
     });
   });
   
@@ -126,15 +126,15 @@ describe('Start: Test wrong requests crud!', () => {
     it('responds with status code 404', (done) => {
       request(host)
         .delete(`/api/users/${testUser.id}`)
-        .expect(StatusCode.NotFound, done);
+        .expect(StatusCode.NOT_FOUND, done);
     });
   });
 
   describe('11. Go to non-existent URL path', () => {
     it('responds with status code 404', (done) => {
       request(host)
-        .get(`/api/users/profile/`)
-        .expect(StatusCode.NotFound, done);
+        .get(`/api/users/someId998/profile/`)
+        .expect(StatusCode.NOT_FOUND, done);
     });
   });
   

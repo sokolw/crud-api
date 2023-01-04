@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import request from 'supertest';
-import { StatusCode } from '../src/StatusCode';
+import { StatusCode } from '../src/app/status-code';
 import { config } from "dotenv";
 
 // set env
@@ -40,7 +40,7 @@ describe('Start: Test more users crud!', () => {
     it('responds with an empty array', (done) => {
       request(host)
         .get('/api/users')
-        .expect(StatusCode.Ok)
+        .expect(StatusCode.OK)
         .expect(JSON.stringify([]), done);
     });
   });
@@ -51,7 +51,7 @@ describe('Start: Test more users crud!', () => {
         request(host)
           .post('/api/users')
           .send(JSON.stringify(users[index]))
-          .expect(StatusCode.Created)
+          .expect(StatusCode.CREATED)
           .then(response => {
             const responseTestUser = JSON.parse(response.text);
             tempDataId.push(responseTestUser.id);
@@ -70,7 +70,7 @@ describe('Start: Test more users crud!', () => {
       it(`User ${index + 1} is exist...`, (done) => {
         request(host)
           .get(`/api/users/${tempDataId[index]}`)
-          .expect(StatusCode.Ok)
+          .expect(StatusCode.OK)
           .then(response => {
             const responseTestUser = JSON.parse(response.text);
             assert.equal(responseTestUser.id, tempDataId[index]);
@@ -92,7 +92,7 @@ describe('Start: Test more users crud!', () => {
         request(host)
           .put(`/api/users/${tempDataId[index]}`)
           .send(JSON.stringify(modifiedUser))
-          .expect(StatusCode.Ok)
+          .expect(StatusCode.OK)
           .then(response => {
             const responseTestUser = JSON.parse(response.text);
             assert.equal(responseTestUser.id, tempDataId[index]);
@@ -111,7 +111,7 @@ describe('Start: Test more users crud!', () => {
       it(`Delete user ${index + 1}...`, (done) => {
         request(host)
           .delete(`/api/users/${tempDataId[index]}`)
-          .expect(StatusCode.NoContent, done);
+          .expect(StatusCode.NO_CONTENT, done);
       });
     }
   });
@@ -121,7 +121,7 @@ describe('Start: Test more users crud!', () => {
       it(`Get the deleted user ${index + 1}...`, (done) => {
         request(host)
           .get(`/api/users/${tempDataId[index]}`)
-          .expect(StatusCode.NotFound, done);
+          .expect(StatusCode.NOT_FOUND, done);
       });
     }
   });
